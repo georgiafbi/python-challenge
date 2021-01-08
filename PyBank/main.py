@@ -3,7 +3,7 @@ import csv
 
 bdgt_pth = os.path.join('Resources', 'budget_data.csv')
 print(f"Your directory: {os.getcwd()}")
-bdgt_txt = os.path.join('Analysis','financial_analysis.csv')
+bdgt_txt = os.path.join('Analysis','financial_analysis.txt')
 #initalizes two variables to store calculations done on bank records
 prft_value = []
 t_months=0
