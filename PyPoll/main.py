@@ -6,7 +6,7 @@ import operator
 #get path of PayPoll.csv
 PyPoll_Path = os.path.join("Resources","election_data.csv" )
 #create path for to export data to a text file
-PyPoll_Results = os.path.join("Analysis","election_results.csv")
+PyPoll_Results = os.path.join("Analysis","election_results.txt")
 
 #lists and variables to store election_data.csv column data
 Voter_ID=[]
@@ -42,7 +42,7 @@ def winner_chicken_dinner():
 def vote_percentages():
     for name in Candidate:
         percent = round((float(len(election_voter[name])/len(Voter_ID))*100),3)
-        print(percent)
+        #print(percent)
         percentages.setdefault(name,[]).append(percent)
         
 #writes a financial analysis data to a text file and in the terminal
@@ -50,15 +50,23 @@ def write_txt_file():
     winner=winner_chicken_dinner()
     vote_percentages()
     with open(PyPoll_Results,"w+") as txt:
-        print("'''text\nElection Results\n----------------------------\n",file=txt)
-        print(f"Total Votes: {len(Voter_ID)}\n",file=txt)
-        print('----------------------------\n',file=txt)
+        txt.write("'''text\nElection Results\n----------------------------\n")
+        print("'''text\nElection Results\n----------------------------\n")
+        txt.write(f"Total Votes: {len(Voter_ID)}\n")
+        print(f"Total Votes: {len(Voter_ID)}\n")
+        txt.write('----------------------------\n')
+        print('----------------------------\n')
         for name in Candidate:
-            print(f"{name}: {percentages[name][0]}% ({num_votes[name]})\n",file=txt)
-        print('----------------------------\n',file=txt)
-        print(f"Winner: {winner}\n",file=txt)
-        print('----------------------------\n',file=txt)
-        print("'''",file=txt)
+            txt.write(f"{name}: {percentages[name][0]}% ({num_votes[name]})\n")
+            print(f"{name}: {percentages[name][0]}% ({num_votes[name]})\n")
+        txt.write('----------------------------\n')
+        print('----------------------------\n')
+        txt.write(f"Winner: {winner}\n")
+        print(f"Winner: {winner}\n")
+        txt.write('----------------------------\n')
+        print('----------------------------\n')
+        txt.write("'''")
+        print("'''")
 
 #open PyPoll_Path
 with open(PyPoll_Path) as PyPoll_File:
